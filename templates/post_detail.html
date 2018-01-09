@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block post_detail %}
+
+        <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Главная</a></li>
+  <li class="breadcrumb-item active">{{ post.title }}</li>
+</ol>
+
+        <small class="text-muted">Опубликовано: {{ post.published_date }}</small>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <p><a class="btn btn-success" href="{% url 'post_detail' pk=post.pk %}send/" role="button">Ответить на объявление</a></p>
+<img src="{{ img.photo.url }}" >
+   {% endblock %}

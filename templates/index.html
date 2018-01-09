@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="https://bootswatch.com/4/journal/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+<div class="jumbotron">
+  <h1 class="display-3">Интимка</h1>
+  <p class="lead">Бесплатная и анонимная доска для интим объявлений. Мы помогли тысячам людей найти себе партнеров и воплотить свои сокровенные желания.</p>
+  <hr class="my-4">
+  <p>Разместите свое объявление и его увидят тысячи других людей. Бесплатно, без регистрации и СМС :)</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'post_new' %}" role="button">Разместить объявление</a>
+  </p>
+</div>
+
+
+{% for post in posts %}
+    <div class="container-fluid">
+        <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <p><small>Добавлено: {{ post.published_date }}</small></p>
+    </div>
+{% endfor %}
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  </body>
+</html>
