@@ -6,9 +6,20 @@
   <li class="breadcrumb-item active">{{ post.title }}</li>
 </ol>
 
-        <small class="text-muted">Опубликовано: {{ post.published_date }}</small>
+        <small class="text-muted">Опубликовано: {{ post.published_date }}
+        {% if post.city %}
+                <p>{{ post.city }}, {{ post.metro }}</p>
+                {% endif %}
+        </small>
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+
+    {% if post.photo %}
+<p><img src="{{ post.photo.url }}" class="img-fluid"></p>
+
+
+    {% endif %}
+
         <p><a class="btn btn-success" href="{% url 'post_detail' pk=post.pk %}send/" role="button">Ответить на объявление</a></p>
-<img src="{{ img.photo.url }}" >
+
    {% endblock %}

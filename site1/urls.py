@@ -18,15 +18,21 @@ from django.urls import path
 from django.conf.urls import url
 
 from board import views
-from board.views import post_list, post_new, post_detail, contactform
+from board.views import post_list, post_new, post_detail, contactform, about
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^$', post_list),
-    url('test', contactform),
+    url(r'^$', post_list, name='post_list'),
+    url('about/', about, name='about'),
     url('^post/new/$', views.post_new, name='post_new'),
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
-    url(r'^post/(?P<pk>\d+)/send/$', contactform, name='contactform'),
 
 
 ]
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns() + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)
