@@ -10,8 +10,8 @@ from django.core.mail import EmailMessage
 
 # Create your views here.
 def post_list(request):
-    posts = Post.objects.all().order_by('-published_date')
-    premium = Post.objects.all().filter(premium=True).order_by('-published_date')
+    posts = Post.objects.all().order_by('-published_date')[:100]
+    premium = Post.objects.all().filter(premium=True).order_by('-published_date')[:5]
     return render(request, 'post_list.html', {'posts': posts, 'premium': premium})
 
 
