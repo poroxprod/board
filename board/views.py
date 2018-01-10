@@ -51,6 +51,7 @@ def contactform(reguest, pk):
                 mail = EmailMessage(subject, message, 'metrika.aion-fly.ru@yandex.ru', recepients)
                 mail.attach(photo.name, photo.read(), photo.content_type)
                 mail.send()
+                return redirect('post_detail', pk=post.pk)
             except BadHeaderError:  # Защита от уязвимости
                 return HttpResponse('Invalid header found')
             # Переходим на другую страницу, если сообщение отправлено
